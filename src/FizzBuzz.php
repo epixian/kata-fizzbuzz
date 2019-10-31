@@ -2,24 +2,28 @@
 
 class FizzBuzz
 {
+    public function translate($number)
+    {
+        if ($this->isDivisibleByThree($number) && $this->isDivisibleByFive($number))
+            return 'fizzbuzz';
+
+        if ($this->isDivisibleByThree($number)) 
+            return 'fizz';
+
+        if ($this->isDivisibleByFive($number))
+            return 'buzz';
+
+        return $number;
+    }
+
     public function countTo($count)
     {
-        $result = [];
-        for ($i = 1; $i <= $count; $i++) {
-            if ($this->isDivisibleByThree($i) && $this->isDivisibleByFive($i))
-                $result[$i] = 'fizzbuzz';
-
-            else if ($this->isDivisibleByThree($i)) 
-                $result[$i] = 'fizz';
-
-            else if ($this->isDivisibleByFive($i))
-                $result[$i] = 'buzz';
-
-            else
-                $result[$i] = $i;
+        for ($i = 1; $i <= $count; $i++) 
+        {
+            $result[] = $this->translate($i);
         }
 
-        return join($result, ', ');
+        return $result;
     }
 
     private function isDivisibleByThree($i)
